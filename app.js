@@ -7,7 +7,7 @@ const routes = require('./routes')
 
 let app = express()
 
-app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(logger('dev'))
 app.use(errorhandler())
 app.use(cors())

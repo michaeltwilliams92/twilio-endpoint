@@ -18,7 +18,7 @@ module.exports = {
             // console.log('--------------DB-------------------')
             // console.log(db)
             // const collection = await db('sms')
-            db.collection('sms').updateOne({ phoneNumber: req.body.number }, { phoneNumber: req.body.number, message: req.body.message }, { upsert: true }, function (err, sms) {
+            db.collection('sms').updateOne({ phoneNumber: req.body.number }, { $set: { phoneNumber: req.body.number, message: req.body.message }}, { upsert: true }, function (err, sms) {
                 if (err) {
                     return res.status(500);
                 }

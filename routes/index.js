@@ -11,12 +11,14 @@ module.exports = {
         //     console.error(e);
         // }
         // let db = conn.db("sms");
-        console.log('--------requestBody-----------');
-        console.log(req.body);
+        console.log('--------request-----------');
+        console.log(req);
         MongoClient.connect(uri, async (err, database) => {
             const db = database.db('sms')
-            const collection = await db('sms')
-            collection.updateOne({ phoneNumber: req.body.number }, { phoneNumber: req.body.number, message: req.body.message }, { upsert: true }, function (err, sms) {
+            // console.log('--------------DB-------------------')
+            // console.log(db)
+            // const collection = await db('sms')
+            db.collection('sms').updateOne({ phoneNumber: req.body.number }, { phoneNumber: req.body.number, message: req.body.message }, { upsert: true }, function (err, sms) {
                 if (err) {
                     return res.status(500);
                 }

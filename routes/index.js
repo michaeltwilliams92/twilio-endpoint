@@ -1,8 +1,9 @@
 var SMS = require('../models/sms');
 
 module.exports = {
-    saveSMSCode(req, res) {
-        SMS.updateOne( { phoneNumber : req.body.number }, { phoneNumber : req.body.number, message : req.body.message }, { upsert : true }, function(err, sms) {
+    async saveSMSCode(req, res) {
+        let collection = await db.collection("sms");
+        collection.updateOne( { phoneNumber : req.body.number }, { phoneNumber : req.body.number, message : req.body.message }, { upsert : true }, function(err, sms) {
             if (err) {
                 return res.status(500)
               }
@@ -11,8 +12,9 @@ module.exports = {
 
     },
 
-    getSMSCode(req, res) {
-        SMS.findOne({ phoneNumber : req.body.number }, function(err, sms) {
+    async getSMSCode(req, res) {
+        let collection = await db.collection("sms");
+        collection.findOne({ phoneNumber : req.body.number }, function(err, sms) {
             if (err) {
                 return res.status(500).send({error: err})
               }

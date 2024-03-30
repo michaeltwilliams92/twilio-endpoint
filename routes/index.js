@@ -1,6 +1,6 @@
 const { MongoClient } = require('mongodb');
-
-export async function saveSMSCode(req, res) {
+module.exports = {
+    async saveSMSCode(req, res) {
     const uri = "mongodb+srv://michaeltwilliams92:RedLag00n1!2@3#@cluster0.gktdpbt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
     const client = new MongoClient(uri);
     let conn;
@@ -20,13 +20,14 @@ export async function saveSMSCode(req, res) {
         return res.status(201);
     });
 
-}
-export async function getSMSCode(req, res) {
-    let collection = await _collection("sms");
+},
+        async getSMSCode(req, res) {
+    let collection = await db("sms");
     collection.findOne({ phoneNumber: req.body.number }, function (err, sms) {
         if (err) {
             return res.status(500).send({ error: err });
         }
         return res.status(201).send({ message: sms.message });
     });
+}
 }

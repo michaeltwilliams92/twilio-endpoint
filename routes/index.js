@@ -1,4 +1,4 @@
-var SMS = require('../models/sms');
+var db = require('../conn');
 
 module.exports = {
     async saveSMSCode(req, res) {

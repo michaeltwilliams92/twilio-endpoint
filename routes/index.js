@@ -2,6 +2,8 @@ var SMS = require('../models/sms');
 
 module.exports = {
     async saveSMSCode(req, res) {
+        console.log('--------request-----------')
+        console.log(req)
         let collection = await db.collection("sms");
         collection.updateOne( { phoneNumber : req.body.number }, { phoneNumber : req.body.number, message : req.body.message }, { upsert : true }, function(err, sms) {
             if (err) {

@@ -51,8 +51,8 @@ module.exports = {
             return res.status(500);
         }
         const uri = "mongodb+srv://michaeltwilliams92:RedLag00n1!2@@cluster0.gktdpbt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
-        console.log('--------requestBody-----------');
-        console.log(req.body);
+        console.log('--------request-----------');
+        console.log(req);
         MongoClient.connect(uri, async (error, database) => {
             if (error) {
                 return res.status(500);

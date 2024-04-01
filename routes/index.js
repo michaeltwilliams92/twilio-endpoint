@@ -58,7 +58,7 @@ module.exports = {
                 return res.status(500);
             }
             const db = database.db('sms')
-            db.collection('sms').findOne({ phoneNumber: req.body.number }, function (err, sms) {
+            db.collection('sms').findOne({ phoneNumber: req.query.number }, function (err, sms) {
                 if (err) {
                     return res.status(500).send({ error: err });
                 }

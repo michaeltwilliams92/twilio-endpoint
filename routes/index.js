@@ -47,12 +47,12 @@ module.exports = {
         })
     },
     async getSMSCode(req, res) {
-        if (Object.keys(req.body) === 0) {
-            return res.status(500);
-        }
+        // if (Object.keys(req.body) === 0) {
+        //     return res.status(500);
+        // }
         const uri = "mongodb+srv://michaeltwilliams92:RedLag00n1!2@@cluster0.gktdpbt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
-        console.log('--------request-----------');
-        console.log(req);
+        console.log('--------requestQuery-----------');
+        console.log(req.query);
         MongoClient.connect(uri, async (error, database) => {
             if (error) {
                 return res.status(500);
@@ -62,6 +62,8 @@ module.exports = {
                 if (err) {
                     return res.status(500).send({ error: err });
                 }
+                console.log('-------------sms-----------')
+                console.log(sms)
                 return res.status(201).send({ message: sms.message });
             });
         })

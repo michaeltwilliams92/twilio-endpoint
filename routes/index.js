@@ -12,21 +12,21 @@ module.exports = {
         let messagesArray = []
         message = message.replace(/^\D+/g, '').split(' ')
         message.forEach((msg) => {
-            const letters = []
-            const nans = 0
+            let letters = []
+            let nans = 0
             for (i = 0; i < msg.length; i++) {
-                 if (!parseInt(msg[i])) {
+                 if (!parseInt(msg[i]) && parseInt(msg[i])!==0) {
                     nans++
                  }
             }
-            if (nans.length === 1) {
+            if (nans <= 1) {
                 for (i = 0; i < msg.length; i++) {
-                    if (parseInt(msg[i])) {
+                    if (parseInt(msg[i]) || parseInt(msg[i])===0) {
                         letters.push(msg[i])
                     }
                 }
             }
-            messagesArray.push(letters.join())
+            messagesArray.push(letters.join(''))
         })
 
         
@@ -38,7 +38,7 @@ module.exports = {
                 return res.status(500);
             }
             const db = database.db('sms')
-            db.collection('sms').updateOne({ phoneNumber: req.body.To }, { $set: { phoneNumber: req.body.To, message: messagesArray || req.body.Body }}, { upsert: true }, function (err, sms) {
+            db.collection('sms').updateOne({ phoneNumber: req.body.To }, { $set: { phoneNumber: req.body.To, message: messagesArray[0] || req.body.Body }}, { upsert: true }, function (err, sms) {
                 if (err) {
                     return res.status(500);
                 }

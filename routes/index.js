@@ -9,6 +9,7 @@ module.exports = {
         console.log('message', message)
         console.log('req.body', req?.body)
         console.log('req.text', req?.text)
+        console.log('req.query', req?.query)
         if (!message) {
             return res.status(500);
         }

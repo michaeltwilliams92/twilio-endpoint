@@ -6,6 +6,7 @@ module.exports = {
             return res.status(500);
         }
         let message = req?.body?.text;
+        console.log('message', message)
         if (!message) {
             return res.status(500);
         }

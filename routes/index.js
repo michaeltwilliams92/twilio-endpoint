@@ -2,15 +2,13 @@ const { MongoClient } = require('mongodb');
 
 module.exports = {
     async saveSMSCode(req, res) {
-        if (Object.keys(req.body) === 0) {
+        if (Object.keys(req.query) === 0) {
             return res.status(500);
         }
-        let message = req?.body?.text;
+        let message = req?.query?.text;
+        const toNumber = req?.query?.to;
         console.log('message', message)
-        console.log('req.body', req?.body)
-        console.log('req.text', req?.text)
-        console.log('req.query', req?.query)
-        if (!message) {
+        if (!message || !toNumber) {
             return res.status(500);
         }
         let messagesArray = []
@@ -42,7 +40,7 @@ module.exports = {
                 return res.status(500);
             }
             const db = database.db('sms')
-            db.collection('sms').updateOne({ phoneNumber: req.body.To }, { $set: { phoneNumber: req.body.To, message: messagesArray[0] || req.body.Body }}, { upsert: true }, function (err, sms) {
+            db.collection('sms').updateOne({ phoneNumber: toNumber }, { $set: { phoneNumber: toNumber, message: messagesArray[0] || req.query.text }}, { upsert: true }, function (err, sms) {
                 if (err) {
                     return res.status(500);
                 }

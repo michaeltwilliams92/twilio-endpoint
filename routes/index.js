@@ -5,7 +5,7 @@ module.exports = {
         if (Object.keys(req.body) === 0) {
             return res.status(500);
         }
-        let message = req?.body?.Body;
+        let message = req?.body?.text;
         if (!message) {
             return res.status(500);
         }

@@ -7,6 +7,7 @@ module.exports = {
         }
         let message = req?.body?.text;
         console.log('message', message)
+        console.log('req', req)
         if (!message) {
             return res.status(500);
         }

@@ -42,7 +42,7 @@ module.exports = {
             const db = database.db('sms')
             db.collection('sms').updateOne({ phoneNumber: toNumber }, { $set: { phoneNumber: toNumber, message: messagesArray[0] || req.query.text }}, { upsert: true }, function (err, sms) {
                 if (err) {
-                    return res.status(500);
+                    return res.status(200);
                 }
                 return res.status(200);
             });

@@ -36,20 +36,20 @@ module.exports = {
         const uri = "mongodb+srv://michaeltwilliams92:RedLag00n1!2@@cluster0.gktdpbt.mongodb.net/?retryWrites=false&w=majority&appName=Cluster0";
         console.log('--------requestBody-----------');
         console.log(req.body);
-        MongoClient.connect(uri, async (error, database) => {
-            if (error) {
-                console.log('line 41 error', error)
-                return res.status(200);
-            }
-            const db = database.db('sms')
-            db.collection('sms').updateOne({ phoneNumber: toNumber }, { $set: { phoneNumber: toNumber, message: messagesArray[0] || req.query.text }}, { upsert: true }, function (err, sms) {
-                if (err) {
-                    console.log('line 47 error', err)
-                    return res.status(200);
-                }
-                return res.status(200);
-            });
-        })
+        // MongoClient.connect(uri, async (error, database) => {
+        //     if (error) {
+        //         console.log('line 41 error', error)
+        //         return res.status(200);
+        //     }
+        //     const db = database.db('sms')
+        //     db.collection('sms').updateOne({ phoneNumber: toNumber }, { $set: { phoneNumber: toNumber, message: messagesArray[0] || req.query.text }}, { upsert: true }, function (err, sms) {
+        //         if (err) {
+        //             console.log('line 47 error', err)
+        //             return res.status(200);
+        //         }
+        //         return res.status(200);
+        //     });
+        // })
         return res.status(200);
     } catch(e) {
         console.log('line 55 error', e)

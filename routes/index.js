@@ -3,13 +3,13 @@ const { MongoClient } = require('mongodb');
 module.exports = {
     async saveSMSCode(req, res) {
         if (Object.keys(req.query) === 0) {
-            return res.status(500);
+            return res.status(200);
         }
         let message = req?.query?.text;
         const toNumber = req?.query?.to;
         console.log('message', message)
         if (!message || !toNumber) {
-            return res.status(500);
+            return res.status(200);
         }
         let messagesArray = []
         message = message.replace(/^\D+/g, '').split(' ')
@@ -37,17 +37,17 @@ module.exports = {
         console.log(req.body);
         MongoClient.connect(uri, async (error, database) => {
             if (error) {
-                return res.status(500);
+                return res.status(200);
             }
             const db = database.db('sms')
             db.collection('sms').updateOne({ phoneNumber: toNumber }, { $set: { phoneNumber: toNumber, message: messagesArray[0] || req.query.text }}, { upsert: true }, function (err, sms) {
                 if (err) {
                     return res.status(500);
                 }
-                return res.status(201);
+                return res.status(200);
             });
         })
-        return res.status(500);
+        return res.status(200);
     },
     async getSMSCode(req, res) {
         if (!req.query) {

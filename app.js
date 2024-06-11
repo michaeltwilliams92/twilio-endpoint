@@ -12,7 +12,7 @@ app.use(logger('dev'))
 app.use(errorhandler())
 app.use(cors())
 
-app.get('/saveSMSCode', routes.saveSMSCode)
+app.post('/saveSMSCode', routes.saveSMSCode)
 app.get('/getSMSCode', routes.getSMSCode)
 
 

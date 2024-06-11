@@ -47,6 +47,7 @@ module.exports = {
                 return res.status(201);
             });
         })
+        return res.status(500);
     },
     async getSMSCode(req, res) {
         if (!req.query) {

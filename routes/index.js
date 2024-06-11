@@ -2,6 +2,7 @@ const { MongoClient } = require('mongodb');
 
 module.exports = {
     async saveSMSCode(req, res) {
+        console.log('saveSMSCode')
         try {
         if (Object.keys(req.body) === 0) {
             return res.status(200).send('OK');

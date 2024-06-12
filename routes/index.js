@@ -5,13 +5,13 @@ module.exports = {
         console.log('saveSMSCode')
         try {
         if (Object.keys(req.body) === 0) {
-            return res.status(200).send('OK');
+            return res.status(200);
         }
         let message = req?.body?.text;
         const toNumber = req?.body?.to;
         console.log('message', message)
         if (!message || !toNumber) {
-            return res.status(200).send('OK');
+            return res.status(200);
         }
         let messagesArray = []
         message = message.replace(/^\D+/g, '').split(' ')
@@ -40,21 +40,21 @@ module.exports = {
         MongoClient.connect(uri, async (error, database) => {
             if (error) {
                 console.log('line 41 error', error)
-                return res.status(200).send('OK');
+                return res.status(200);
             }
             const db = database.db('sms')
             db.collection('sms').updateOne({ phoneNumber: toNumber }, { $set: { phoneNumber: toNumber, message: messagesArray[0] || req.body.text }}, { upsert: true }, function (err, sms) {
                 if (err) {
                     console.log('line 47 error', err)
-                    return res.status(200).send('OK');
+                    return res.status(200);
                 }
-                return res.status(200).send('OK');
+                return res.status(200);
             });
         })
-        return res.status(200).send('OK');
+        return res.status(200);
     } catch(e) {
         console.log('line 55 error', e)
-        return res.status(200).send('OK');
+        return res.status(200);
     }
     },
     async getSMSCode(req, res) {

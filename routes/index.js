@@ -1,7 +1,7 @@
 const { MongoClient } = require('mongodb');
 const mongoose = require('mongoose')
 
-mongoose.connect('mongodb+srv://michaeltwilliams92:RedLag00n1!2@3#@cluster0.gktdpbt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', { useUnifiedTopology: true, useNewUrlParser: true });
+mongoose.connect('mongodb+srv://michaeltwilliams92:RedLag00n1!2@3#@cluster0.gktdpbt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0');
 mongoose.Promise = global.Promise
 const db = mongoose.connection
 

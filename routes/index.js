@@ -61,7 +61,7 @@ module.exports = {
         if (!req.body) {
             return res.status(500);
         }
-        const uri = "mongodb+srv://michaeltwilliams92:RedLag00n1!2@@cluster0.gktdpbt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+        const uri = "mongodb+srv://michaeltwilliams92:RedLag00n1!2@3#@cluster0.gktdpbt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
         console.log('--------requestbody-----------');
         console.log(req.body);
         MongoClient.connect(uri, async (error, database) => {

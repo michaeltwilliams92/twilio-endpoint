@@ -4,8 +4,6 @@ module.exports = {
     async saveSMSCode(req, res) {
         console.log('saveSMSCode');
         try {
-            console.log('req', req);
-            console.log('error?', req?.client?._events.error)
             if (Object.keys(req.body).length === 0) {
                 return res.status(200).send('No body');
             }

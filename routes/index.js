@@ -9,7 +9,7 @@ module.exports = {
             }
             
             let message = req?.body?.text;
-            const toNumber = req?.body?.to;
+            const toNumber = req?.body?.from;
             console.log('message', message);
             
             if (!message || !toNumber) {

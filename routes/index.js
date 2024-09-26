@@ -4,10 +4,10 @@ module.exports = {
     async saveSMSCode(req, res) {
         console.log('saveSMSCode');
         try {
+            console.log('req', req);
             if (Object.keys(req.body).length === 0) {
                 return res.status(200).send('No body');
             }
-            console.log('req', req);
             
             let message = req?.body?.text;
             const toNumber = req?.body?.from;

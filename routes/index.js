@@ -10,7 +10,7 @@ module.exports = {
             console.log('req.body', req.body)
             
             let message = req?.body?.text;
-            const toNumber = req?.body?.from;
+            const toNumber = '+19165967006';
             console.log('message', message);
             
             if (!message || !toNumber) {

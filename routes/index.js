@@ -7,6 +7,7 @@ module.exports = {
             if (Object.keys(req.body).length === 0) {
                 return res.status(200).send('No body');
             }
+            console.log('req', req);
             
             let message = req?.body?.text;
             const toNumber = req?.body?.from;
